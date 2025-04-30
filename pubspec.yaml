@@ -1,0 +1,74 @@
+name: stylish
+description: "A new Flutter project."
+
+
+publish_to: 'none' 
+
+
+
+
+
+
+
+
+
+
+
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+
+
+
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  
+  
+  cupertino_icons: ^1.0.8
+  font_awesome_flutter: ^10.4.0
+  flutter_native_splash: ^2.4.4
+  smooth_page_indicator: ^1.2.1
+  get: ^4.7.2
+  url_launcher: ^6.3.1
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  iconsax: ^0.0.8
+
+  
+  
+  
+  
+  flutter_lints: ^5.0.0
+
+
+
+
+
+flutter:
+
+  
+  
+  
+  uses-material-design: true
+
+
+  assets:
+     - assets/images/
+     - assets/logos/
+     - assets/product/
+     - assets/items/
+
