@@ -4,6 +4,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:stylish/src/features/bottom_nav_screens/profile_screen/profile_screen.dart';
 
 import '../../constants/colors.dart';
+import '../authentication/controller/auth_controller.dart';
+import '../authentication/passwords/change_password.dart';
+import '../authentication/screens/login/success screen/LogoutDialog.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -13,6 +16,8 @@ class Setting extends StatefulWidget {
 }
 
 class _SearchState extends State<Setting> {
+  final controller = Get.find<AuthController>(); // ✅ Use GetX properly   // ✅ Form key
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +42,7 @@ class _SearchState extends State<Setting> {
             leading: const Icon(Icons.lock),
             title: const Text("Change Password",style: TextStyle(fontSize: 15),),
             onTap: () {
-              // Navigate to password change
+              Get.to(ChangePasswordScreen());
             },
           ),
 
@@ -67,8 +72,12 @@ class _SearchState extends State<Setting> {
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red),
             title: const Text("Logout", style: TextStyle(color: TColors.buttonPrimary,fontSize: 15)),
-            onTap: () {
-              // Handle logout
+            onTap: (){
+              LogoutDialog.showLogoutDialog(
+                onConfirm: () {
+                  Get.find<AuthController>().logout();
+                },
+              );
             },
           ),
         ],

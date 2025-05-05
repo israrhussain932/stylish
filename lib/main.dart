@@ -1,10 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:stylish/src/features/authentication/controller/auth_controller.dart';
 import 'package:stylish/src/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:stylish/src/util/theme/app_theme.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    Get.put(AuthController()); // Inject controller
+    runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

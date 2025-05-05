@@ -4,9 +4,19 @@ import 'package:stylish/src/features/authentication/screens/login/widgets/login_
 import 'package:stylish/src/features/authentication/screens/login/widgets/password_textfield.dart';
 import 'package:stylish/src/features/bottom_nav_screens/profile_screen/widgets/input_textfield.dart';
 
-class ProfileScreen extends StatelessWidget {
+import '../../authentication/controller/auth_controller.dart';
+
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  AuthController controller = AuthController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +56,9 @@ class ProfileScreen extends StatelessWidget {
             const Text("Personal Details", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 10),
 
-            EmailTextField(),
+            EmailTextField(emailController:controller.emailController,),
             const SizedBox(height: 10),
-            PasswordTextField(hintText: 'password'),
+            PasswordTextField(hintText: 'password', PasswordController: controller.passwordController,),
             const SizedBox(height: 5),
             Align(
               alignment: Alignment.centerRight,

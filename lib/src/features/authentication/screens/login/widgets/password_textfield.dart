@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
   final String  hintText;
+  final TextEditingController PasswordController;
+  final String? Function(String?)? validator;
   const PasswordTextField({super.key,
     required this.hintText,
+    required this.PasswordController,
+    this.validator,
+
 
   });
 
@@ -11,17 +16,17 @@ class PasswordTextField extends StatefulWidget {
   State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 class _PasswordTextFieldState extends State<PasswordTextField> {
-
   bool _obscureText = true;
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+       controller: widget.PasswordController,
+      validator: widget.validator,
       obscureText: _obscureText,
       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
       decoration: InputDecoration(
