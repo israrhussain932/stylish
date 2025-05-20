@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import '../../authentication/product_detail/productdetailscreen.dart';
 class conainerWidget extends StatelessWidget {
   final String image;
   final String text;
@@ -12,7 +14,8 @@ class conainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: ()async{
+        Get.to(ProductDetailScreen());},
       child: Column(
         children: [
           Container(
@@ -23,7 +26,7 @@ class conainerWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: CircleAvatar(
-                backgroundImage: AssetImage(image),
+                backgroundImage: NetworkImage(image) as ImageProvider,
               )
           ),
           Text(text)

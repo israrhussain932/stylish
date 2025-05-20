@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stylish/src/features/authentication/screens/login/widgets/login_button.dart';
 import 'changepassword_controller/change_password_controller.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -12,6 +12,7 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final controller = Get.put(ChangePasswordController());
+  User? currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +23,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         title: Text(
           'Change Password',
           style: TextStyle(
-            color: Theme
-                .of(context)
-                .textTheme
-                .bodyMedium!
-                .color,
+            color: Theme.of(context).textTheme.bodyMedium!.color,
           ),
         ),
         leading: IconButton(
             onPressed: () {
               Get.back();
             },
-            icon: Icon(Icons.arrow_back_ios, color: Theme
-            .of(context)
-            .textTheme
-            .bodyMedium!
-            .color, )),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
+            )),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -47,8 +43,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           key: controller.formKey,
           child: Column(
             children: [
-              Obx(() =>
-                  SizedBox(
+              Obx(() => SizedBox(
                     height: 55,
                     child: TextFormField(
                       controller: controller.currentPassword,
@@ -59,15 +54,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         labelText: 'Current Password',
                         labelStyle: TextStyle(
                           fontSize: labelFontSize,
-                          color: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         floatingLabelStyle: TextStyle(fontSize: labelFontSize),
                         contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         suffixIcon: IconButton(
                           icon: Icon(controller.isCurrentObscure.value
                               ? Icons.visibility_off
@@ -75,15 +66,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           onPressed: () => controller.isCurrentObscure.toggle(),
                         ),
                       ),
-                      validator: (value) =>
-                      value == null || value.isEmpty
-                          ? 'Enter current password'
-                          : null,
+                      validator: controller.validateCurrentPassword,
                     ),
                   )),
               SizedBox(height: 16),
-              Obx(() =>
-                  SizedBox(
+              Obx(() => SizedBox(
                     height: 55,
                     child: TextFormField(
                       controller: controller.newPassword,
@@ -94,15 +81,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         labelText: 'New Password',
                         labelStyle: TextStyle(
                           fontSize: labelFontSize,
-                          color: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         floatingLabelStyle: TextStyle(fontSize: labelFontSize),
                         contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         suffixIcon: IconButton(
                           icon: Icon(controller.isNewObscure.value
                               ? Icons.visibility_off
@@ -110,15 +93,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           onPressed: () => controller.isNewObscure.toggle(),
                         ),
                       ),
-                      validator: (value) =>
-                      value != null && value.length < 6
-                          ? 'Password must be at least 6 characters'
-                          : null,
+                      validator: controller.validateNewPassword,
                     ),
                   )),
               SizedBox(height: 16),
-              Obx(() =>
-                  SizedBox(
+              Obx(() => SizedBox(
                     height: 55,
                     child: TextFormField(
                       controller: controller.confirmPassword,
@@ -129,15 +108,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         labelText: 'Confirm New Password',
                         labelStyle: TextStyle(
                           fontSize: labelFontSize,
-                          color: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         floatingLabelStyle: TextStyle(fontSize: labelFontSize),
                         contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         suffixIcon: IconButton(
                           icon: Icon(controller.isConfirmObscure.value
                               ? Icons.visibility_off
@@ -145,26 +120,22 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           onPressed: () => controller.isConfirmObscure.toggle(),
                         ),
                       ),
-                      validator: (value) =>
-                      value == null || value.isEmpty
-                          ? 'Please confirm new password'
-                          : null,
+                      validator: controller.validateConfirmPassword,
                     ),
                   )),
               SizedBox(height: 24),
-              ElevatedButton(onPressed: ()
-              async{
-                if (controller.currentPassword.text.isNotEmpty ||
-                    controller.confirmPassword.text.isNotEmpty) {
-                  await  controller.changePassword(
-                  email: 'ibrahim@gmail.com',
-                  currentPassword:controller.currentPassword.text,
-                  newPassword: controller.confirmPassword.text
-                );
-                }
-              print("password change");
-              },
-                  child: Text("changePassword",style: TextStyle(color: Colors.pink),))
+              ElevatedButton(
+                onPressed: () async {
+                  if (controller.formKey.currentState!.validate()) {
+                    await controller.changePassword();
+                  }
+                },
+                child: Text(
+                  "Change Password",
+                  style: TextStyle(color: Colors.pink),
+                ),
+              ),
+
             ],
           ),
         ),

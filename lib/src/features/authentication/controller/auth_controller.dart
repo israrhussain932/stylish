@@ -29,6 +29,7 @@ class AuthController extends GetxController {
   }
   // Login method
   Future<User?> signIn() async {
+
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 

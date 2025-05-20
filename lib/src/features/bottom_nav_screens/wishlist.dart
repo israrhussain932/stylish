@@ -6,12 +6,9 @@ import 'package:stylish/src/features/authentication/product_detail/productdetail
 import 'package:stylish/src/features/bottom_nav_screens/widgets/all_features.dart';
 import 'package:stylish/src/features/bottom_nav_screens/widgets/custom_appbar.dart';
 import 'package:stylish/src/features/bottom_nav_screens/widgets/custom_textfield.dart';
-
 import '../../constants/images.dart';
-
 class Wishlist extends StatelessWidget {
   Wishlist({super.key});
-
   final List<Map<String, String>> products = [
     {
       'image': 'assets/items/switer.png',
@@ -54,7 +51,6 @@ class Wishlist extends StatelessWidget {
       'price': '₹4,999',
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
