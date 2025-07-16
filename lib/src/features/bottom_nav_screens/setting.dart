@@ -7,6 +7,7 @@ import '../../constants/colors.dart';
 import '../authentication/controller/auth_controller.dart';
 import '../authentication/passwords/change_password.dart';
 import '../authentication/screens/login/success screen/LogoutDialog.dart';
+import 'notification_screen.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -51,19 +52,11 @@ class _SearchState extends State<Setting> {
           const Text("Preferences", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
           const SizedBox(height: 10),
-          SwitchListTile(
-            value: true,
-            onChanged: (val) {
-              // Handle notification toggle
-            },
-            title: const Text("Notifications",style: TextStyle(fontSize: 15),),
-            secondary: const Icon(Icons.notifications),
-          ),
           ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text("Language",style: TextStyle(fontSize: 15),),
-            onTap: () {
-              // Navigate to language selection
+            leading: const Icon(Icons.notifications, color: Colors.white),
+            title: const Text("notification", style: TextStyle(color: Colors.white,fontSize: 15)),
+            onLongPress: (){
+             NotificationScreen();
             },
           ),
 
@@ -85,3 +78,6 @@ class _SearchState extends State<Setting> {
     );
   }
 }
+
+
+

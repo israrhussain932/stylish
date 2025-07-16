@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '893512786165',
     projectId: 'stylish-579e9',
     authDomain: 'stylish-579e9.firebaseapp.com',
+    databaseURL: 'https://stylish-579e9-default-rtdb.firebaseio.com',
     storageBucket: 'stylish-579e9.firebasestorage.app',
     measurementId: 'G-T2JRPYVM63',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:893512786165:android:11ec2cd8ba4e1c9183a5bc',
     messagingSenderId: '893512786165',
     projectId: 'stylish-579e9',
+    databaseURL: 'https://stylish-579e9-default-rtdb.firebaseio.com',
     storageBucket: 'stylish-579e9.firebasestorage.app',
   );
 
@@ -66,7 +68,10 @@ class DefaultFirebaseOptions {
     appId: '1:893512786165:ios:40fc19cbe466d85083a5bc',
     messagingSenderId: '893512786165',
     projectId: 'stylish-579e9',
+    databaseURL: 'https://stylish-579e9-default-rtdb.firebaseio.com',
     storageBucket: 'stylish-579e9.firebasestorage.app',
+    androidClientId: '893512786165-ts2pikhbeosldanmikfr9i8d9hl305ud.apps.googleusercontent.com',
+    iosClientId: '893512786165-ktilrbm3hv4ipq2tiljsq8q50srpnegp.apps.googleusercontent.com',
     iosBundleId: 'com.example.stylish',
   );
 
@@ -75,7 +80,11 @@ class DefaultFirebaseOptions {
     appId: '1:893512786165:ios:40fc19cbe466d85083a5bc',
     messagingSenderId: '893512786165',
     projectId: 'stylish-579e9',
+    databaseURL: 'https://stylish-579e9-default-rtdb.firebaseio.com',
     storageBucket: 'stylish-579e9.firebasestorage.app',
+    androidClientId: '893512786165-ts2pikhbeosldanmikfr9i8d9hl305ud.apps.googleusercontent.com',
+    iosClientId: '893512786165-ktilrbm3hv4ipq2tiljsq8q50srpnegp.apps.googleusercontent.com',
     iosBundleId: 'com.example.stylish',
   );
+
 }

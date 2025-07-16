@@ -21,7 +21,7 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   final controller = Get.find<AuthController>(); // ✅ Reuse instance
-  final _formKey = GlobalKey<FormState>();       // ✅ Correctly for the Form
+  final _formKey = GlobalKey<FormState>(); // ✅ Correctly for the Form
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,8 @@ class _CreateAccountState extends State<CreateAccount> {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
-          child: Form(                          // ✅ Wrap inside Form
+          child: Form(
+            // ✅ Wrap inside Form
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +87,13 @@ class _CreateAccountState extends State<CreateAccount> {
                 LoginButton(
                   text: 'Create Account',
                   onPressed: () {
-                   controller.signUp();
+                    if (_formKey.currentState!.validate()) {
+                      controller.signUp(
+                        controller.emailController.text.trim(),
+                        controller.passwordController.text.trim(),
+                        controller.nameController.text.trim(),
+                      );
+                    }
                   },
                 ),
 

@@ -38,9 +38,11 @@ dependencies:
   url_launcher: ^6.3.1
   #----firebase packages---
   firebase_auth: ^5.5.3
+  firebase_database: ^11.3.9
   firebase_core: ^3.13.0
   cloud_firestore: ^5.6.7
   google_sign_in: ^6.3.0
+  firebase_messaging: ^15.2.9
   permission_handler: ^12.0.0+1
   image_picker: ^1.1.2
 
@@ -65,6 +67,7 @@ dev_dependencies:
 flutter:
 
   
+
   
   
   uses-material-design: true

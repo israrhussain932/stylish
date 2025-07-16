@@ -8,7 +8,6 @@ class ImageSliderWithIndicator extends StatefulWidget {
   @override
   State<ImageSliderWithIndicator> createState() => _ImageSliderWithIndicatorState();
 }
-
 class _ImageSliderWithIndicatorState extends State<ImageSliderWithIndicator> {
   final PageController _controller = PageController(viewportFraction: 0.9); // Adds spacing
   int currentPage = 0;
@@ -18,7 +17,6 @@ class _ImageSliderWithIndicatorState extends State<ImageSliderWithIndicator> {
     'assets/product/banner1.png',
     'assets/product/banner1.png',
   ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
